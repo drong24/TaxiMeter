@@ -20,8 +20,6 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        locationManager.startMonitoringSignificantLocationChanges()
         locationManager.distanceFilter = kCLDistanceFilterNone
     }
     
@@ -63,5 +61,18 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error: \(error.localizedDescription)")
     }
-    
+    func start() {
+        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
+    }
+    func stop() {
+        locationManager.stopUpdatingLocation()
+        locationManager.stopMonitoringSignificantLocationChanges()
+    }
+    func reset() {
+        stop()
+        newLocation = nil
+        previousLocation = nil
+        distanceTraveled = 0
+    }
 }
