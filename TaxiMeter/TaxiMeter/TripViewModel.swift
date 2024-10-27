@@ -8,28 +8,22 @@
 import Foundation
 import CoreLocation
 
-class TripViewModel : ObservableObject {
-    
-    var locationManager = CLLocationManager()
-    @Published private(set) var TripList = [TripModel]()
-    
-    var trip: TripModel = TripModel()
-    
+/**
+ 
+ class TripViewModel : ObservableObject {
+     
+     @Published private(set) var TripList = [TripModel]()
+     
+     var trip: TripModel
+     
+     func createTrip() {
+         trip = TripModel()
+     }
+     
+     func saveTrip() {
+         
+     }
+     
+ }
 
-    func start() {
-        
-    }
-    
-    func stop() {
-        
-    }
-    
-    func reset() {
-        
-    }
-    
-    func saveTrip() {
-        
-    }
-    
-}
+ */

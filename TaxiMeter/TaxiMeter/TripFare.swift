@@ -22,56 +22,73 @@ struct TripFare: View {
         
             switch locationDataManager.locationManager.authorizationStatus {
             case .authorizedWhenInUse:
+                NavigationStack {
                     List {
-                        HStack {
-                            Text("Trip Fare")
-                            Spacer()
-                            Text("⚙️")
-                            Text("📄")
-                        }
-                        .padding()
-                        .bold()
-                        .font(.system(size: 30))
                         /*
                          Text("Your current location is:")
                          Text("lat: \(locationDataManager.locationManager.location?.coordinate.latitude.description ?? "Error")")
                          Text("lng: \(locationDataManager.locationManager.location?.coordinate.longitude.description ?? "Error")")
                          */
-                        Text("Distance Traveled: \(String(format:"%.2f", distanceTraveled)) mi")
-                            .padding()
-                            .bold()
-                            .font(.system(size: 30))
-                        Text("Price Per Mile: \(String(format: "%.2f",pricePerMile))")
-                            .padding()
-                            .bold()
-                            .font(.system(size: 30))
-                        Text("Initial fee: $\(String(format: "%.2f", initialFee))")
-                            .padding()
-                            .bold()
-                            .font(.system(size: 30))
-                        Text("Total fare: $\(String(format: "%.2f",distanceTraveled * pricePerMile + initialFee))")
-                            .padding()
-                            .bold()
-                            .font(.system(size: 30))
-                        Spacer()
+                        VStack {
+                            Text("Distance Traveled:")
+                            Text("\(String(format:"%.2f", distanceTraveled)) mi")
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+
+                        VStack {
+                            Text("Price Per Mile:")
+                            Text("\(String(format: "%.2f",pricePerMile))")
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+                        .padding(.bottom)
+                        VStack {
+                            Text("Initial fee:")
+                            Text("\(String(format: "%.2f", initialFee))")
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+                        .padding(.bottom)
+                        VStack {
+                            Text("Total fare:")
+                            Text("\(String(format: "%.2f",distanceTraveled * pricePerMile + initialFee))")
+                                .bold()
+                                .font(.system(size: 30))
+                        }
+                        .padding(.bottom)
+
                         if !trackingStarted {
-                            Button("Start Location Tracking", action: {
+                            Button("Start Tracking", action: {
                                 locationDataManager.start()
                                 trackingStarted.toggle()
                             })
+                            .padding()
+                            .cornerRadius(3.0)
+                            .background(.black)
+                            .foregroundColor(.white)
+                            
                         }
                         else {
-                            Button("Stop Location Tracking", action: {
+                            Button("Stop Tracking", action: {
                                 locationDataManager.stop()
                                 trackingStarted.toggle()
+                                
                             })
+                            .border(Color.black, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                            
                         }
                         Button("Complete Trip", action: {
                             trackingStarted = false
                             locationDataManager.reset()
                         })
+                        .padding()
+                        .border(Color.black, width: 1)
                     }
                     .listStyle(.grouped)
+                    .navigationTitle("Taxi")
+                }
+                    
             case .notDetermined:
                 Text("Finding your location...")
                 ProgressView()
