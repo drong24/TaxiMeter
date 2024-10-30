@@ -14,7 +14,11 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     @Published var authorizationStatus: CLAuthorizationStatus?
     var previousLocation: CLLocation!
     var newLocation: CLLocation!
+    
     @Published var distanceTraveled: Double = 0
+    var rate : Double = 2.5
+    var initialFee : Double = 6.00
+    var tripList = TripViewModel()
     
     override init() {
         super.init()
@@ -68,6 +72,12 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     func stop() {
         locationManager.stopUpdatingLocation()
         locationManager.stopMonitoringSignificantLocationChanges()
+    }
+    func save() {
+        tripList.saveTrip(trip: TripModel(distance: distanceTraveled, rate: rate, initialFee: initialFee))
+    }
+    func delete(trip: TripModel) {
+        tripList.deleteTrip(trip: trip)
     }
     func reset() {
         stop()

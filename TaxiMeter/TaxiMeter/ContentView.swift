@@ -13,6 +13,8 @@ struct ContentView: View {
             List {
                 NavigationLink("Trip Fare", destination: {TripFare()})
                 NavigationLink("History", destination: {TripFare()})
+                NavigationLink("Settings", destination: {TripFare()})
+
             }
             .listStyle(.grouped)
             .navigationTitle("Home")

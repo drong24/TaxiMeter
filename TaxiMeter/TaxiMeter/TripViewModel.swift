@@ -8,22 +8,24 @@
 import Foundation
 import CoreLocation
 
-/**
+
  
  class TripViewModel : ObservableObject {
      
      @Published private(set) var TripList = [TripModel]()
      
-     var trip: TripModel
-     
-     func createTrip() {
-         trip = TripModel()
+     func saveTrip(trip: TripModel) {
+         TripList.append(trip)
+         print(TripList)
      }
      
-     func saveTrip() {
-         
+     func deleteTrip(trip: TripModel) {
+         if let index = TripList.firstIndex(of: trip){
+             TripList.remove(at: index)
+             print(TripList)
+         }
      }
      
  }
 
- */
+ 

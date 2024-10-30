@@ -94,6 +94,7 @@ struct TripFare: View {
                     }
                     Button("Complete Trip", action: {
                         trackingStarted = false
+                        locationDataManager.save()
                         locationDataManager.reset()
                     })
                     .frame(maxWidth: .infinity)
