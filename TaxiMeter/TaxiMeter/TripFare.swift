@@ -22,72 +22,75 @@ struct TripFare: View {
         
             switch locationDataManager.locationManager.authorizationStatus {
             case .authorizedWhenInUse:
-                NavigationStack {
-                    List {
-                        /*
-                         Text("Your current location is:")
-                         Text("lat: \(locationDataManager.locationManager.location?.coordinate.latitude.description ?? "Error")")
-                         Text("lng: \(locationDataManager.locationManager.location?.coordinate.longitude.description ?? "Error")")
-                         */
-                        VStack {
-                            Text("Distance Traveled:")
-                            Text("\(String(format:"%.2f", distanceTraveled)) mi")
-                                .bold()
-                                .font(.system(size: 30))
-                        }
-
-                        VStack {
-                            Text("Price Per Mile:")
-                            Text("\(String(format: "%.2f",pricePerMile))")
-                                .bold()
-                                .font(.system(size: 30))
-                        }
-                        .padding(.bottom)
+                VStack {
+                    /*
+                     Text("Your current location is:")
+                     Text("lat: \(locationDataManager.locationManager.location?.coordinate.latitude.description ?? "Error")")
+                     Text("lng: \(locationDataManager.locationManager.location?.coordinate.longitude.description ?? "Error")")
+                     */
+                    VStack {
+                        Text("Distance Traveled:")
+                        Text("\(String(format:"%.2f", distanceTraveled)) mi")
+                            .bold()
+                            .font(.system(size: 30))
+                    }
+                    
+                    VStack {
+                        Text("Price Per Mile:")
+                        Text("\(String(format: "%.2f",pricePerMile))")
+                            .bold()
+                            .font(.system(size: 30))
+                        
                         VStack {
                             Text("Initial fee:")
                             Text("\(String(format: "%.2f", initialFee))")
                                 .bold()
                                 .font(.system(size: 30))
-                        }
-                        .padding(.bottom)
-                        VStack {
+                            
+                            
                             Text("Total fare:")
                             Text("\(String(format: "%.2f",distanceTraveled * pricePerMile + initialFee))")
                                 .bold()
                                 .font(.system(size: 30))
-                        }
-                        .padding(.bottom)
-
-                        if !trackingStarted {
-                            Button("Start Tracking", action: {
-                                locationDataManager.start()
-                                trackingStarted.toggle()
+                            
+                            
+                            if !trackingStarted {
+                                Button("Start Tracking", action: {
+                                    locationDataManager.start()
+                                    trackingStarted.toggle()
+                                })
+                                .padding()
+                                .cornerRadius(3.0)
+                                .background(.red)
+                                .foregroundColor(.white)
+                                
+                            }
+                            else {
+                                Button("Stop Tracking", action: {
+                                    locationDataManager.stop()
+                                    trackingStarted.toggle()
+                                    
+                                })
+                                .padding()
+                                .cornerRadius(3.0)
+                                .background(.red)
+                                .foregroundColor(.white)
+                                
+                            }
+                            Button("Complete Trip", action: {
+                                trackingStarted = false
+                                locationDataManager.reset()
                             })
                             .padding()
-                            .cornerRadius(3.0)
-                            .background(.black)
-                            .foregroundColor(.white)
-                            
+                            .border(Color.red, width: 1)
                         }
-                        else {
-                            Button("Stop Tracking", action: {
-                                locationDataManager.stop()
-                                trackingStarted.toggle()
-                                
-                            })
-                            .border(Color.black, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-                            
-                        }
-                        Button("Complete Trip", action: {
-                            trackingStarted = false
-                            locationDataManager.reset()
-                        })
-                        .padding()
-                        .border(Color.black, width: 1)
+                        .listStyle(.grouped)
+                        .navigationTitle("Taxi")
                     }
-                    .listStyle(.grouped)
-                    .navigationTitle("Taxi")
                 }
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: .infinity)
+                .background(Color.black)
+                .foregroundStyle(Color.red)
                     
             case .notDetermined:
                 Text("Finding your location...")
