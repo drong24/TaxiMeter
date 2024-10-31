@@ -68,7 +68,31 @@ struct TripFare: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 50, design: .monospaced))
                     Spacer()
-                        
+                    HStack {
+                        NavigationLink(destination: TripHistoryView()) {
+                            Image(systemName: "gearshape")
+                                .imageScale(.large)
+                            Text("Settings")
+                        }
+                            .padding(7)
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10.0)
+                                .stroke()
+                            )
+                        NavigationLink(destination: TripHistoryView()) {
+                            Image(systemName: "clock")
+                                .imageScale(.large)
+                            Text("History")
+                        }
+                            .padding(7)
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10.0)
+                                .stroke()
+                            )
+                    }
+                    Spacer()
                     if !trackingStarted {
                         Button("Start Tracking", action: {
                             locationDataManager.start()
