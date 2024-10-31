@@ -14,7 +14,7 @@
 		ABE2E7F72CCD7A8900682C89 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E7F62CCD7A8900682C89 /* LocationDataManager.swift */; };
 		ABE2E7F92CCDEF5500682C89 /* TripFare.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E7F82CCDEF5500682C89 /* TripFare.swift */; };
 		ABE2E7FB2CCE139700682C89 /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E7FA2CCE139600682C89 /* TripModel.swift */; };
-		ABE2E7FD2CCE184800682C89 /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E7FC2CCE184800682C89 /* TripViewModel.swift */; };
+		ABE2E7FF2CD3571E00682C89 /* TripHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E7FE2CD3571E00682C89 /* TripHistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +26,7 @@
 		ABE2E7F62CCD7A8900682C89 /* LocationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
 		ABE2E7F82CCDEF5500682C89 /* TripFare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripFare.swift; sourceTree = "<group>"; };
 		ABE2E7FA2CCE139600682C89 /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
-		ABE2E7FC2CCE184800682C89 /* TripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
+		ABE2E7FE2CD3571E00682C89 /* TripHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +62,9 @@
 				ABE2E7F62CCD7A8900682C89 /* LocationDataManager.swift */,
 				ABE2E7E82CCD757B00682C89 /* TaxiMeterApp.swift */,
 				ABE2E7EA2CCD757B00682C89 /* ContentView.swift */,
-				ABE2E7FC2CCE184800682C89 /* TripViewModel.swift */,
 				ABE2E7FA2CCE139600682C89 /* TripModel.swift */,
 				ABE2E7F82CCDEF5500682C89 /* TripFare.swift */,
+				ABE2E7FE2CD3571E00682C89 /* TripHistoryView.swift */,
 				ABE2E7EC2CCD757C00682C89 /* Assets.xcassets */,
 				ABE2E7EE2CCD757C00682C89 /* Preview Content */,
 			);
@@ -150,10 +150,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABE2E7FB2CCE139700682C89 /* TripModel.swift in Sources */,
-				ABE2E7FD2CCE184800682C89 /* TripViewModel.swift in Sources */,
 				ABE2E7EB2CCD757B00682C89 /* ContentView.swift in Sources */,
 				ABE2E7F72CCD7A8900682C89 /* LocationDataManager.swift in Sources */,
 				ABE2E7F92CCDEF5500682C89 /* TripFare.swift in Sources */,
+				ABE2E7FF2CD3571E00682C89 /* TripHistoryView.swift in Sources */,
 				ABE2E7E92CCD757B00682C89 /* TaxiMeterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

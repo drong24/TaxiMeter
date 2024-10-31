@@ -12,7 +12,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 NavigationLink("Trip Fare", destination: {TripFare()})
-                NavigationLink("History", destination: {TripFare()})
+                NavigationLink("History", destination: {TripHistoryView()})
                 NavigationLink("Settings", destination: {TripFare()})
 
             }

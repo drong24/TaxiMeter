@@ -18,7 +18,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     @Published var distanceTraveled: Double = 0
     var rate : Double = 2.5
     var initialFee : Double = 6.00
-    var tripList = TripViewModel()
+    var tripList = UserDefaults.standard.array(forKey: "tripList")
     
     override init() {
         super.init()
@@ -74,10 +74,15 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
         locationManager.stopMonitoringSignificantLocationChanges()
     }
     func save() {
+        /*
         tripList.saveTrip(trip: TripModel(distance: distanceTraveled, rate: rate, initialFee: initialFee))
+        UserDefaults.standard.set(tripList, forKey: "tripList")
+         */
     }
     func delete(trip: TripModel) {
+        /*
         tripList.deleteTrip(trip: trip)
+         */
     }
     func reset() {
         stop()
