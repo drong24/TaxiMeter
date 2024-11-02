@@ -29,7 +29,7 @@ struct ContentView: View {
                      Text("lat: \(locationDataManager.locationManager.location?.coordinate.latitude.description ?? "Error")")
                      Text("lng: \(locationDataManager.locationManager.location?.coordinate.longitude.description ?? "Error")")
                      */
-                    
+                    /*
                     Text("Distance Traveled:")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 30, design: .monospaced))
@@ -59,39 +59,27 @@ struct ContentView: View {
                         .font(.system(size: 50, design: .monospaced))
                     Divider()
                         .background(Color.red)
+                    */
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "line.3.horizontal")
+                            .imageScale(.large)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+
+                    }
+
+                    Text("Yellow Taxi")
+                        .bold()
+                        .font(.system(size: 40, design: .monospaced))
+                        .foregroundColor(Color.yellow)
                     
+                    Spacer()
                     Text("Total fare:")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 30, design: .monospaced))
+                        .font(.system(size: 35, design: .monospaced))
                     Text("\(String(format: "%.2f",distanceTraveled * pricePerMile + initialFee))")
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 50, design: .monospaced))
-                    Spacer()
-                    HStack {
-                        NavigationLink(destination: TripHistoryView()) {
-                            Image(systemName: "gearshape")
-                                .imageScale(.large)
-                            Text("Settings")
-                        }
-                        .padding(7)
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10.0)
-                                .stroke()
-                        )
-                        NavigationLink(destination: TripHistoryView()) {
-                            Image(systemName: "clock")
-                                .imageScale(.large)
-                            Text("History")
-                        }
-                        .padding(7)
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10.0)
-                                .stroke()
-                        )
-                    }
+                        .font(.system(size: 100, design: .monospaced))
                     Spacer()
                     if !trackingStarted {
                         Button("Start Tracking", action: {
@@ -100,7 +88,7 @@ struct ContentView: View {
                         })
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(.red)
+                        .background(Color(red: 34/255,green: 139/255, blue: 34/255))
                         .foregroundColor(.white)
                         
                     }
@@ -118,18 +106,18 @@ struct ContentView: View {
                     }
                     Button("Complete Trip", action: {
                         trackingStarted = false
-                        locationDataManager.save()
+                        //locationDataManager.save()
                         locationDataManager.reset()
                     })
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .border(Color.red, width: 1)
+                    .border(Color(red: 1,green: 1, blue: 1))
                     
                 }
                 .padding()
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: .infinity, alignment: .leading)
                 .background(Color.black)
-                .foregroundStyle(Color.red)
+                .foregroundStyle(Color(red: 247,green: 0, blue: 0))
                 
             case .notDetermined:
                 Text("Finding your location...")
