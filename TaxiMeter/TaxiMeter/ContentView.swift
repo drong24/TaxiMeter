@@ -15,6 +15,11 @@ struct ContentView: View {
     @State var trackingStarted = false
     @AppStorage("fareRate") var fareRate = "2.50"
     @AppStorage("initialFee") var initialFee = "3.50"
+    @AppStorage("showDistance") var showDistance = false
+    @AppStorage("showfareRate") var showFareRate = false
+    @AppStorage("showInitialFee") var showInitialFee = false
+    @AppStorage("distanceUnit") var distanceUnit = "Mi"
+    @AppStorage("currency") var currency = "USD"
     
     var body: some View {
         @State var distanceTraveled = locationDataManager.distanceTraveled * mileConversionRate
@@ -73,11 +78,37 @@ struct ContentView: View {
                         .foregroundColor(Color.yellow)
                     
                     Spacer()
-
+                    if (showDistance) {
+                        Text("Distance Traveled:")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 30, design: .monospaced))
+                        Text("\(String(format:"%.2f", distanceTraveled)) \(distanceUnit)")
+                            .bold()
+                            .font(.system(size: 50, design: .monospaced))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    if (showFareRate) {
+                        Text("Price Per Mile:")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 30, design: .monospaced))
+                        Text(Double(fareRate) ?? 0, format: .currency(code: currency))
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 50, design: .monospaced))
+                    }
+                    if (showInitialFee) {
+                        Text("Initial fee:")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 30, design: .monospaced))
+                        Text(Double(initialFee) ?? 0, format: .currency(code: currency))
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 50, design: .monospaced))
+                    }
                     Text("Total fare:")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 35, design: .monospaced))
-                    Text("$\(String(format: "%.2f",distanceTraveled * (Double(fareRate) ?? 0) + (Double(initialFee) ?? 0)))")
+                    Text((distanceTraveled * (Double(fareRate) ?? 0) + (Double(initialFee) ?? 0)), format: .currency(code: currency))
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 100, design: .monospaced))

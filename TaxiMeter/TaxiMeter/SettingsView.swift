@@ -14,8 +14,11 @@ struct SettingsView: View {
     @AppStorage("fareRate") var fareRate = "1.60"
     @AppStorage("initialFee") var initialFee = "5.54"
     @AppStorage("distanceUnit") var distanceUnit = "Mi"
-    @AppStorage("currenct") var currency = "USD"
+    @AppStorage("currency") var currency = "USD"
     @AppStorage("appTheme") var appTheme = "Classic Red"
+    @AppStorage("showDistance") var showDistance = false
+    @AppStorage("showfareRate") var showFareRate = false
+    @AppStorage("showInitialFee") var showInitialFee = false
     
     var currencies = ["USD", "CAD", "Yen", "CYN", "Peso"]
     var unit = ["Mi", "Km"]
@@ -53,7 +56,7 @@ struct SettingsView: View {
                 }
             }
             
-            Section("Fare Calculations") {
+            Section("View Display") {
                 Picker(selection: $distanceUnit, label: Text("Km or Miles:")) {
                     ForEach(unit, id: \.self) {
                         Text($0)
@@ -66,6 +69,9 @@ struct SettingsView: View {
                     }
                 }
                 .pickerStyle(.menu)
+                Toggle("Show Distance Traveled", isOn: $showDistance)
+                Toggle("Show Rate", isOn: $showFareRate)
+                Toggle("Show Initial Fee", isOn: $showInitialFee)
             }
             
             Section("Other Setings") {
