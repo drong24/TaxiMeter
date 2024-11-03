@@ -13,9 +13,13 @@ struct SettingsView: View {
     @AppStorage("tariff") var tariff = "2.50"
     @AppStorage("fareRate") var fareRate = "1.60"
     @AppStorage("initialFee") var initialFee = "5.54"
-    @AppStorage("distanceUnit") var distanceUnit = "mi"
+    @AppStorage("distanceUnit") var distanceUnit = "Mi"
     @AppStorage("currenct") var currency = "USD"
-    @AppStorage("appTheme") var appTheme = "Classic"
+    @AppStorage("appTheme") var appTheme = "Classic Red"
+    
+    var currencies = ["USD", "CAD", "Yen", "CYN", "Peso"]
+    var unit = ["Mi", "Km"]
+    var themes = ["Classic Red", "Classic Yellow", "White", "Inverted"]
     
     var body: some View {
         List {
@@ -51,16 +55,15 @@ struct SettingsView: View {
             
             Section("Fare Calculations") {
                 Picker(selection: $distanceUnit, label: Text("Km or Miles:")) {
-                    Text("Km")
-                    Text("Mi")
+                    ForEach(unit, id: \.self) {
+                        Text($0)
+                    }
                 }
                 .pickerStyle(.menu)
                 Picker(selection: $currency, label: Text("Currency:")) {
-                    Text("USD")
-                    Text("CAD")
-                    Text("Yen")
-                    Text("CYN")
-                    Text("Peso")
+                    ForEach(currencies, id: \.self) {
+                        Text($0)
+                    }
                 }
                 .pickerStyle(.menu)
             }
@@ -68,11 +71,22 @@ struct SettingsView: View {
             Section("Other Setings") {
 
                 Picker(selection: $appTheme, label: Text("Color:")) {
-                    Text("Classic")
-                    Text("Classic Yellow")
-                    Text("Classic White")
-                    Text("Inverted")
+                    ForEach(themes, id: \.self) {
+                        Text($0)
+                    }
                 }
+                Text(distanceUnit)
+                Text(currency)
+                
+
+            }
+            
+            Section {
+                Button("Reset Defaults", action: {
+                    UserDefaults.standard.dictionaryRepresentation().keys.forEach { key in
+                        UserDefaults.standard.removeObject(forKey: key)
+                    }
+                })
             }
         }
     }
