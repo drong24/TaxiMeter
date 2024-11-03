@@ -10,11 +10,11 @@ import MapKit
 
 struct ContentView: View {
     @StateObject var locationDataManager = LocationDataManager()
-    var pricePerMile: Double = 2.50
-    var initialFee: Double = 6.00
-    var totalFaree: Double = 0
+    var totalFare: Double = 0
     let mileConversionRate = 0.000621371
     @State var trackingStarted = false
+    @AppStorage("fareRate") var fareRate = "2.50"
+    @AppStorage("initialFee") var initialFee = "3.50"
     
     var body: some View {
         @State var distanceTraveled = locationDataManager.distanceTraveled * mileConversionRate
@@ -73,10 +73,11 @@ struct ContentView: View {
                         .foregroundColor(Color.yellow)
                     
                     Spacer()
+
                     Text("Total fare:")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 35, design: .monospaced))
-                    Text("\(String(format: "%.2f",distanceTraveled * pricePerMile + initialFee))")
+                    Text("$\(String(format: "%.2f",distanceTraveled * (Double(fareRate) ?? 0) + (Double(initialFee) ?? 0)))")
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 100, design: .monospaced))
