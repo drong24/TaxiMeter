@@ -12,6 +12,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     
     var locationManager = CLLocationManager()
     @Published var authorizationStatus: CLAuthorizationStatus?
+    
     var previousLocation: CLLocation!
     var newLocation: CLLocation!
     

@@ -57,7 +57,7 @@ struct SettingsView: View {
             }
             
             Section("View Display") {
-                Picker(selection: $distanceUnit, label: Text("Km or Miles:")) {
+                Picker(selection: $distanceUnit, label: Text("Kilometers or Miles:")) {
                     ForEach(unit, id: \.self) {
                         Text($0)
                     }
