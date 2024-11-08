@@ -11,7 +11,8 @@ import MapKit
 struct ContentView: View {
     @StateObject var locationDataManager = LocationDataManager()
     var totalFare: Double = 0
-    let mileConversionRate = 0.000621371
+
+    let mileConversionRate = 0.621371
     @State var trackingStarted = false
     @AppStorage("fareRate") var fareRate = "2.50"
     @AppStorage("initialFee") var initialFee = "3.50"
@@ -22,49 +23,13 @@ struct ContentView: View {
     @AppStorage("currency") var currency = "USD"
     
     var body: some View {
-        @State var distanceTraveled = locationDataManager.distanceTraveled * mileConversionRate
-        @State var cameraPos: MapCameraPosition = .userLocation(fallback: .automatic)
+        
+        @State var distanceTraveled : Double = locationDataManager.distanceTraveled
+        
         NavigationView {
             switch locationDataManager.locationManager.authorizationStatus {
             case .authorizedWhenInUse:
-                
                 VStack {
-                    /*
-                     Text("Your current location is:")
-                     Text("lat: \(locationDataManager.locationManager.location?.coordinate.latitude.description ?? "Error")")
-                     Text("lng: \(locationDataManager.locationManager.location?.coordinate.longitude.description ?? "Error")")
-                     */
-                    /*
-                    Text("Distance Traveled:")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 30, design: .monospaced))
-                    Text("\(String(format:"%.2f", distanceTraveled)) mi")
-                        .bold()
-                        .font(.system(size: 50, design: .monospaced))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Divider()
-                        .background(Color.red)
-                    
-                    Text("Price Per Mile:")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 30, design: .monospaced))
-                    Text("\(String(format: "%.2f",pricePerMile))")
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 50, design: .monospaced))
-                    Divider()
-                        .background(Color.red)
-                    
-                    Text("Initial fee:")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 30, design: .monospaced))
-                    Text("\(String(format: "%.2f", initialFee))")
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 50, design: .monospaced))
-                    Divider()
-                        .background(Color.red)
-                    */
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "line.3.horizontal")
                             .imageScale(.large)
@@ -82,10 +47,19 @@ struct ContentView: View {
                         Text("Distance Traveled:")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.system(size: 30, design: .monospaced))
-                        Text("\(String(format:"%.2f", distanceTraveled)) \(distanceUnit)")
-                            .bold()
-                            .font(.system(size: 50, design: .monospaced))
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        if (distanceUnit == "Mi") {
+                            Text("\(String(format:"%.2f", distanceTraveled * mileConversionRate)) \(distanceUnit)")
+                                .bold()
+                                .font(.system(size: 50, design: .monospaced))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        else {
+                            Text("\(String(format:"%.2f", distanceTraveled)) \(distanceUnit)")
+                                .bold()
+                                .font(.system(size: 50, design: .monospaced))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+
                     }
                     if (showFareRate) {
                         Text("Price Per Mile:")
@@ -107,11 +81,11 @@ struct ContentView: View {
                     }
                     Text("Total fare:")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 35, design: .monospaced))
+                        .font(.system(size: 30, design: .monospaced))
                     Text((distanceTraveled * (Double(fareRate) ?? 0) + (Double(initialFee) ?? 0)), format: .currency(code: currency))
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 100, design: .monospaced))
+                        .font(.system(size: 60, design: .monospaced))
                     Spacer()
                     if !trackingStarted {
                         Button("Start Tracking", action: {

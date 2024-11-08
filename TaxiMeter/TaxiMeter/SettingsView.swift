@@ -20,7 +20,7 @@ struct SettingsView: View {
     @AppStorage("showfareRate") var showFareRate = false
     @AppStorage("showInitialFee") var showInitialFee = false
     
-    var currencies = ["USD", "CAD", "Yen", "CYN", "Peso"]
+    var currencies = ["USD", "EUR", "JPY", "GBP", "INR"]
     var unit = ["Mi", "Km"]
     var themes = ["Classic Red", "Classic Yellow", "White", "Inverted"]
     
