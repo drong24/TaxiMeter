@@ -13,6 +13,7 @@ struct SettingsView: View {
     @AppStorage("tariff") var tariff = "2.50"
     @AppStorage("fareRate") var fareRate = "1.60"
     @AppStorage("initialFee") var initialFee = "5.54"
+    @AppStorage("tolls") var tolls = "0.00"
     @AppStorage("distanceUnit") var distanceUnit = "Mi"
     @AppStorage("currency") var currency = "USD"
     @AppStorage("appTheme") var appTheme = "Classic Red"
@@ -56,6 +57,15 @@ struct SettingsView: View {
                         .padding(7)
                         .border(Color.gray)
                 }
+                HStack {
+                    Text("Tolls:")
+                    Spacer()
+                    TextField(tolls, text: $tolls)
+                        .frame(width: 100)
+                        .keyboardType(.numberPad)
+                        .padding(7)
+                        .border(Color.gray)
+                }
             }
             
             Section("Display") {
@@ -74,17 +84,17 @@ struct SettingsView: View {
                 Toggle("Show Distance Traveled", isOn: $showDistance)
                 Toggle("Show Rate", isOn: $showFareRate)
                 Toggle("Show Initial Fee", isOn: $showInitialFee)
-                Picker(selection: $TotalFareTextSize, label: Text("Total Fare Text Size:")) {
-                    ForEach(textSize, id: \.self) {
-                        Text($0)
-                    }
-                }
             }
             
             Section("Other Setings") {
 
                 Picker(selection: $appTheme, label: Text("Color Scheme:")) {
                     ForEach(themes, id: \.self) {
+                        Text($0)
+                    }
+                }
+                Picker(selection: $TotalFareTextSize, label: Text("Total Fare Text Size:")) {
+                    ForEach(textSize, id: \.self) {
                         Text($0)
                     }
                 }
