@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TaxiMeterView: View {
     
+    
     @StateObject var locationDataManager = LocationDataManager()
     var totalFare: Double = 0
 

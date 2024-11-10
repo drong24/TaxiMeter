@@ -81,9 +81,6 @@ struct SettingsView: View {
                         Text($0)
                     }
                 }
-                Text(distanceUnit)
-                Text(currency)
-                
 
             }
             
