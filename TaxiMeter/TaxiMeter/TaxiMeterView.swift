@@ -20,6 +20,7 @@ struct TaxiMeterView: View {
     @AppStorage("showDistance") var showDistance = false
     @AppStorage("showfareRate") var showFareRate = false
     @AppStorage("showInitialFee") var showInitialFee = false
+    @AppStorage("TotalFareTextSize") var TotalFareTextSize = "60"
     @AppStorage("distanceUnit") var distanceUnit = "Mi"
     @AppStorage("currency") var currency = "USD"
     
@@ -84,7 +85,7 @@ struct TaxiMeterView: View {
             Text((distanceTraveled * (Double(fareRate) ?? 0) + (Double(initialFee) ?? 0)), format: .currency(code: currency))
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.system(size: 60, design: .monospaced))
+                .font(.system(size: Double(TotalFareTextSize)!, design: .monospaced))
             Spacer()
             if !trackingStarted {
                 Button("Start Tracking", action: {

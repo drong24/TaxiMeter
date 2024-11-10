@@ -69,6 +69,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     func start() {
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
+        
     }
     func stop() {
         locationManager.stopUpdatingLocation()

@@ -19,10 +19,12 @@ struct SettingsView: View {
     @AppStorage("showDistance") var showDistance = false
     @AppStorage("showfareRate") var showFareRate = false
     @AppStorage("showInitialFee") var showInitialFee = false
+    @AppStorage("TotalFareTextSize") var TotalFareTextSize = "60"
     
     var currencies = ["USD", "EUR", "JPY", "GBP", "INR"]
     var unit = ["Mi", "Km"]
     var themes = ["Classic Red", "Classic Yellow", "White", "Inverted"]
+    var textSize = ["50", "60", "80", "100"]
     
     var body: some View {
         List {
@@ -56,7 +58,7 @@ struct SettingsView: View {
                 }
             }
             
-            Section("View Display") {
+            Section("Display") {
                 Picker(selection: $distanceUnit, label: Text("Kilometers or Miles:")) {
                     ForEach(unit, id: \.self) {
                         Text($0)
@@ -72,11 +74,16 @@ struct SettingsView: View {
                 Toggle("Show Distance Traveled", isOn: $showDistance)
                 Toggle("Show Rate", isOn: $showFareRate)
                 Toggle("Show Initial Fee", isOn: $showInitialFee)
+                Picker(selection: $TotalFareTextSize, label: Text("Total Fare Text Size:")) {
+                    ForEach(textSize, id: \.self) {
+                        Text($0)
+                    }
+                }
             }
             
             Section("Other Setings") {
 
-                Picker(selection: $appTheme, label: Text("Color:")) {
+                Picker(selection: $appTheme, label: Text("Color Scheme:")) {
                     ForEach(themes, id: \.self) {
                         Text($0)
                     }
