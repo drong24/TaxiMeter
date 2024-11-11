@@ -28,102 +28,108 @@ struct TaxiMeterView: View {
         
         
         @State var distanceTraveled : Double = locationDataManager.distanceTraveled
-        
-        VStack {
-            NavigationLink(destination: SettingsView()) {
-                Image(systemName: "line.3.horizontal")
-                    .imageScale(.large)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+        GeometryReader { geometry in
+            ScrollView {
+                VStack {
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "line.3.horizontal")
+                            .imageScale(.large)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
 
-            }
+                    }
 
-            Text("Yellow Taxi")
-                .bold()
-                .font(.system(size: 40, design: .monospaced))
-                .foregroundColor(Color.yellow)
-            
-            Spacer()
-            if (showDistance) {
-                Text("Distance Traveled:")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 30, design: .monospaced))
-                if (distanceUnit == "Mi") {
-                    Text("\(String(format:"%.2f", distanceTraveled * mileConversionRate)) \(distanceUnit)")
+                    Text("Yellow Taxi")
                         .bold()
-                        .font(.system(size: 50, design: .monospaced))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                else {
-                    Text("\(String(format:"%.2f", distanceTraveled)) \(distanceUnit)")
-                        .bold()
-                        .font(.system(size: 50, design: .monospaced))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-
-            }
-            if (showFareRate) {
-                Text("Price Per Mile:")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 30, design: .monospaced))
-                Text(Double(fareRate) ?? 0, format: .currency(code: currency))
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 50, design: .monospaced))
-            }
-            if (showInitialFee) {
-                Text("Initial fee:")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 30, design: .monospaced))
-                Text(Double(initialFee) ?? 0, format: .currency(code: currency))
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 50, design: .monospaced))
-            }
-            Text("Total fare:")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.system(size: 30, design: .monospaced))
-            Text((distanceTraveled * (Double(fareRate) ?? 0) + (Double(initialFee) ?? 0)), format: .currency(code: currency))
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.system(size: Double(TotalFareTextSize)!, design: .monospaced))
-            Spacer()
-            if !trackingStarted {
-                Button("Start Tracking", action: {
-                    locationDataManager.start()
-                    trackingStarted.toggle()
-                })
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color(red: 34/255,green: 139/255, blue: 34/255))
-                .foregroundColor(.white)
-                
-            }
-            else {
-                Button("Stop Tracking", action: {
-                    locationDataManager.stop()
-                    trackingStarted.toggle()
+                        .font(.system(size: 40, design: .monospaced))
+                        .foregroundColor(Color.yellow)
                     
-                })
-                .frame(maxWidth: .infinity)
+                    Spacer()
+                    if (showDistance) {
+                        Text("Distance Traveled:")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 30, design: .monospaced))
+                        if (distanceUnit == "Mi") {
+                            Text("\(String(format:"%.2f", distanceTraveled * mileConversionRate)) \(distanceUnit)")
+                                .bold()
+                                .font(.system(size: 50, design: .monospaced))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        else {
+                            Text("\(String(format:"%.2f", distanceTraveled)) \(distanceUnit)")
+                                .bold()
+                                .font(.system(size: 50, design: .monospaced))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+
+                    }
+                    if (showFareRate) {
+                        Text("Price Per Mile:")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 30, design: .monospaced))
+                        Text(Double(fareRate) ?? 0, format: .currency(code: currency))
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 50, design: .monospaced))
+                    }
+                    if (showInitialFee) {
+                        Text("Initial fee:")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 30, design: .monospaced))
+                        Text(Double(initialFee) ?? 0, format: .currency(code: currency))
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 50, design: .monospaced))
+                    }
+                    Text("Total fare:")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.system(size: 30, design: .monospaced))
+                    Text((distanceTraveled * (Double(fareRate) ?? 0) + (Double(initialFee) ?? 0)), format: .currency(code: currency))
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.system(size: Double(TotalFareTextSize)!, design: .monospaced))
+                    Spacer()
+                    if !trackingStarted {
+                        Button("Start Tracking", action: {
+                            locationDataManager.start()
+                            trackingStarted.toggle()
+                        })
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color(red: 34/255,green: 139/255, blue: 34/255))
+                        .foregroundColor(.white)
+                        
+                    }
+                    else {
+                        Button("Stop Tracking", action: {
+                            locationDataManager.stop()
+                            trackingStarted.toggle()
+                            
+                        })
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(.red)
+                        .foregroundColor(.white)
+                        
+                    }
+                    Button("Complete Trip", action: {
+                        trackingStarted = false
+                        //locationDataManager.save()
+                        locationDataManager.reset()
+                    })
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .border(Color(red: 1,green: 1, blue: 1))
+                    
+                }
                 .padding()
-                .background(.red)
-                .foregroundColor(.white)
-                
+                .frame(minWidth: geometry.size.width,minHeight: geometry.size.height)
+                .background(Color.black)
+                .foregroundStyle(Color(red: 247,green: 0, blue: 0))
             }
-            Button("Complete Trip", action: {
-                trackingStarted = false
-                //locationDataManager.save()
-                locationDataManager.reset()
-            })
-            .frame(maxWidth: .infinity)
-            .padding()
-            .border(Color(red: 1,green: 1, blue: 1))
-            
+            .frame(minWidth: geometry.size.width,minHeight: geometry.size.height)
+            .background(Color.black)
+            .foregroundStyle(Color(red: 247,green: 0, blue: 0))
         }
-        .padding()
-        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,maxHeight: .infinity, alignment: .leading)
-        .background(Color.black)
-        .foregroundStyle(Color(red: 247,green: 0, blue: 0))
     }
 }
 
