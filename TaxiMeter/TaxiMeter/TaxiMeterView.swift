@@ -47,17 +47,17 @@ struct TaxiMeterView: View {
                     if (showDistance) {
                         Text("Distance Traveled:")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 30, design: .monospaced))
+                            .font(.system(size: 30/*10*/, design: .monospaced))
                         if (distanceUnit == "Mi") {
                             Text("\(String(format:"%.2f", distanceTraveled * mileConversionRate)) \(distanceUnit)")
                                 .bold()
-                                .font(.system(size: 50, design: .monospaced))
+                                .font(.system(size: 50/*25*/, design: .monospaced))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         else {
                             Text("\(String(format:"%.2f", distanceTraveled)) \(distanceUnit)")
                                 .bold()
-                                .font(.system(size: 50, design: .monospaced))
+                                .font(.system(size: 50/*25*/, design: .monospaced))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
 
@@ -65,20 +65,20 @@ struct TaxiMeterView: View {
                     if (showFareRate) {
                         Text("Price Per Mile:")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 30, design: .monospaced))
+                            .font(.system(size: 30/*10*/, design: .monospaced))
                         Text(Double(fareRate) ?? 0, format: .currency(code: currency))
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 50, design: .monospaced))
+                            .font(.system(size: 50/*25*/, design: .monospaced))
                     }
                     if (showInitialFee) {
                         Text("Initial fee:")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 30, design: .monospaced))
+                            .font(.system(size: 30/*10*/, design: .monospaced))
                         Text(Double(initialFee) ?? 0, format: .currency(code: currency))
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 50, design: .monospaced))
+                            .font(.system(size: 50/*25*/, design: .monospaced))
                     }
                     Text("Total fare:")
                         .frame(maxWidth: .infinity, alignment: .leading)
