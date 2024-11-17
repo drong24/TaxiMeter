@@ -9,12 +9,13 @@ import SwiftUI
 
 struct TaxiMeterView: View {
     
-    
+    //@StateObject var settingsModelView = SettingsViewModel()
     @StateObject var locationDataManager = LocationDataManager()
     var totalFare: Double = 0
-
+    
     let mileConversionRate = 0.621371
     @State var trackingStarted = false
+    //@State var tariff = UserDefaults.standard.stringArray(forKey: "tariff1") ?? ["1.0", "2.0", "3.0", "4.0", "5.0"]
     @AppStorage("fareRate") var fareRate = "2.50"
     @AppStorage("initialFee") var initialFee = "3.50"
     @AppStorage("showDistance") var showDistance = false
@@ -24,10 +25,13 @@ struct TaxiMeterView: View {
     @AppStorage("distanceUnit") var distanceUnit = "Mi"
     @AppStorage("currency") var currency = "USD"
     
+    let presetChosen = UserDefaults.standard.string(forKey: "presetChosen") ?? "1"
+    
     var body: some View {
         
         
         @State var distanceTraveled : Double = locationDataManager.distanceTraveled
+        
         GeometryReader { geometry in
             ScrollView {
                 VStack {
@@ -47,17 +51,17 @@ struct TaxiMeterView: View {
                     if (showDistance) {
                         Text("Distance Traveled:")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 30/*10*/, design: .monospaced))
+                            .font(.system(size: 30, design: .monospaced))
                         if (distanceUnit == "Mi") {
                             Text("\(String(format:"%.2f", distanceTraveled * mileConversionRate)) \(distanceUnit)")
                                 .bold()
-                                .font(.system(size: 50/*25*/, design: .monospaced))
+                                .font(.system(size: 50, design: .monospaced))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         else {
                             Text("\(String(format:"%.2f", distanceTraveled)) \(distanceUnit)")
                                 .bold()
-                                .font(.system(size: 50/*25*/, design: .monospaced))
+                                .font(.system(size: 50, design: .monospaced))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
 
@@ -65,20 +69,20 @@ struct TaxiMeterView: View {
                     if (showFareRate) {
                         Text("Price Per Mile:")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 30/*10*/, design: .monospaced))
+                            .font(.system(size: 30, design: .monospaced))
                         Text(Double(fareRate) ?? 0, format: .currency(code: currency))
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 50/*25*/, design: .monospaced))
+                            .font(.system(size: 50, design: .monospaced))
                     }
                     if (showInitialFee) {
                         Text("Initial fee:")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 30/*10*/, design: .monospaced))
+                            .font(.system(size: 30, design: .monospaced))
                         Text(Double(initialFee) ?? 0, format: .currency(code: currency))
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 50/*25*/, design: .monospaced))
+                            .font(.system(size: 50, design: .monospaced))
                     }
                     Text("Total fare:")
                         .frame(maxWidth: .infinity, alignment: .leading)
