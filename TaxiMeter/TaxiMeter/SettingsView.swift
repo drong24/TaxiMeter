@@ -19,6 +19,7 @@ struct SettingsView: View {
     @AppStorage("TotalFareTextSize") var TotalFareTextSize = "60"
     @AppStorage("presetChosen") var presetChosen = "1"
     
+    @State var refresher = false
     var tariffPresets = ["1", "2", "3"]
     var currencies = ["USD", "EUR", "JPY", "GBP", "INR"]
     var unit = ["Mi", "Km"]
@@ -34,6 +35,10 @@ struct SettingsView: View {
                     }
                 }
                 .pickerStyle(.segmented)
+                .onChange(of: presetChosen) {
+                    refresher.toggle()
+                    print(presetChosen)
+                }
                 TariffSettingView()
             }
             

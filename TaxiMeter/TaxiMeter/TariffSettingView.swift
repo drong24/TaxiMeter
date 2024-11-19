@@ -10,7 +10,7 @@ import SwiftUI
 struct TariffSettingView: View {
     
     @StateObject var settingVM = SettingsViewModel()
-    
+    @AppStorage("presetChosen") var preset = "1"
     @State var tariff1 = UserDefaults.standard.stringArray(forKey: "tariff1") ?? ["1.0", "2.0", "3.0", "4.0", "5.0"]
     @State var tariff2 = UserDefaults.standard.stringArray(forKey: "tariff2") ?? ["2.0", "2.0", "3.0", "4.0", "5.0"]
     @State var tariff3 = UserDefaults.standard.stringArray(forKey: "tariff3") ?? ["3.0", "2.0", "3.0", "4.0", "5.0"]
@@ -18,7 +18,7 @@ struct TariffSettingView: View {
     
     var body: some View {
         
-        if settingVM.getPreset() == "1" {
+        if preset == "1" {
             VStack {
                 HStack {
                     Text("Tariff:")
@@ -70,7 +70,7 @@ struct TariffSettingView: View {
                 settingVM.saveNewDefault(arrayName: "tariff1", array: tariff1)
             }
         }
-        else if settingVM.presetChosen == "2" {
+        else if preset == "2" {
             VStack {
                 HStack {
                     Text("Tariff:")
@@ -119,7 +119,7 @@ struct TariffSettingView: View {
                 }
             }
             .onChange(of: tariff2) {
-                settingVM.saveNewDefault(arrayName: "tariff", array: tariff2)
+                settingVM.saveNewDefault(arrayName: "tariff2", array: tariff2)
             }
         }
         else {
@@ -171,7 +171,7 @@ struct TariffSettingView: View {
                 }
             }
             .onChange(of: tariff3) {
-                settingVM.saveNewDefault(arrayName: "tariff", array: tariff3)
+                settingVM.saveNewDefault(arrayName: "tariff3", array: tariff3)
             }
         }
     }

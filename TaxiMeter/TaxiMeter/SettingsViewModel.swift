@@ -11,7 +11,7 @@ import Foundation
 class SettingsViewModel : ObservableObject {
      
     var presetChosen = UserDefaults.standard.string(forKey: "presetChosen") ?? "1"
-    var tariff1 = UserDefaults.standard.stringArray(forKey: "tariff1") ?? [String]()
+    var tariff1 = UserDefaults.standard.stringArray(forKey: "tariff1") ?? ["1.0", "2.0", "3.0", "4.0", "5.0"]
     var tariff2 = UserDefaults.standard.stringArray(forKey: "tariff2") ?? ["2.0", "2.0", "3.0", "4.0", "5.0"]
     var tariff3 = UserDefaults.standard.stringArray(forKey: "tariff3") ?? ["3.0", "2.0", "3.0", "4.0", "5.0"]
     
@@ -28,6 +28,7 @@ class SettingsViewModel : ObservableObject {
         return tariff3[0]
     }
     func getFareRate() -> String {
+        print("at getFareRate -> \(presetChosen) : \(tariff1[1])")
         if (presetChosen == "1") {
             return tariff1[1]
         }
@@ -65,7 +66,14 @@ class SettingsViewModel : ObservableObject {
     }
     func saveNewDefault(arrayName: String, array : [String]) {
         UserDefaults.standard.setValue(array, forKey: arrayName)
-        print("saved! \(array)")
+        print("saved! \(arrayName) : \(array)")
+    }
+    func fetchData() {
+        presetChosen = UserDefaults.standard.string(forKey: "presetChosen") ?? "1"
+        tariff1 = UserDefaults.standard.stringArray(forKey: "tariff1") ?? ["1.0", "2.0", "3.0", "4.0", "5.0"]
+        tariff2 = UserDefaults.standard.stringArray(forKey: "tariff2") ?? ["2.0", "2.0", "3.0", "4.0", "5.0"]
+        tariff3 = UserDefaults.standard.stringArray(forKey: "tariff3") ?? ["3.0", "2.0", "3.0", "4.0", "5.0"]
+        print("at fetchData \(presetChosen) : \(tariff1)")
     }
     
 }

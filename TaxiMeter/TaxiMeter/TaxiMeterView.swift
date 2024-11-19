@@ -9,23 +9,22 @@ import SwiftUI
 
 struct TaxiMeterView: View {
     
-    //@StateObject var settingsModelView = SettingsViewModel()
+    @StateObject var settingsModelView = SettingsViewModel()
     @StateObject var locationDataManager = LocationDataManager()
     var totalFare: Double = 0
     
     let mileConversionRate = 0.621371
     @State var trackingStarted = false
-    //@State var tariff = UserDefaults.standard.stringArray(forKey: "tariff1") ?? ["1.0", "2.0", "3.0", "4.0", "5.0"]
-    @AppStorage("fareRate") var fareRate = "2.50"
-    @AppStorage("initialFee") var initialFee = "3.50"
+    @State var refresher = false
+    @State var tariff = ["1.09", "2.00", "3.00", "4.00", "5.99"]
+    
     @AppStorage("showDistance") var showDistance = false
     @AppStorage("showfareRate") var showFareRate = false
     @AppStorage("showInitialFee") var showInitialFee = false
     @AppStorage("TotalFareTextSize") var TotalFareTextSize = "60"
     @AppStorage("distanceUnit") var distanceUnit = "Mi"
     @AppStorage("currency") var currency = "USD"
-    
-    let presetChosen = UserDefaults.standard.string(forKey: "presetChosen") ?? "1"
+    @AppStorage("presetChosen") var presetChosen = "1"
     
     var body: some View {
         
@@ -70,7 +69,7 @@ struct TaxiMeterView: View {
                         Text("Price Per Mile:")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.system(size: 30, design: .monospaced))
-                        Text(Double(fareRate) ?? 0, format: .currency(code: currency))
+                        Text(Double(tariff[1]) ?? 0, format: .currency(code: currency))
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.system(size: 50, design: .monospaced))
@@ -79,7 +78,7 @@ struct TaxiMeterView: View {
                         Text("Initial fee:")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.system(size: 30, design: .monospaced))
-                        Text(Double(initialFee) ?? 0, format: .currency(code: currency))
+                        Text(Double(tariff[2]) ?? 0, format: .currency(code: currency))
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.system(size: 50, design: .monospaced))
@@ -87,7 +86,7 @@ struct TaxiMeterView: View {
                     Text("Total fare:")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 30, design: .monospaced))
-                    Text((distanceTraveled * (Double(fareRate) ?? 0) + (Double(initialFee) ?? 0)), format: .currency(code: currency))
+                    Text((distanceTraveled * (Double(tariff[1]) ?? 0) + (Double(tariff[2]) ?? 0)), format: .currency(code: currency))
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: Double(TotalFareTextSize)!, design: .monospaced))
@@ -133,6 +132,23 @@ struct TaxiMeterView: View {
             .frame(minWidth: geometry.size.width,minHeight: geometry.size.height)
             .background(Color.black)
             .foregroundStyle(Color(red: 247,green: 0, blue: 0))
+        }
+        .onAppear {
+            settingsModelView.fetchData()
+            if presetChosen == "1" {
+                tariff = settingsModelView.tariff1
+                print("1 = \(presetChosen) : \(tariff)")
+            }
+            else if presetChosen == "2" {
+                tariff = settingsModelView.tariff2
+                print("2 = \(presetChosen) : \(tariff)")
+
+            }
+            else {
+                tariff = settingsModelView.tariff3
+                print("3 = \(presetChosen) : \(tariff)")
+            }
+            refresher.toggle()
         }
     }
 }
