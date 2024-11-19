@@ -67,7 +67,7 @@ struct TariffSettingView: View {
                 }
             }
             .onChange(of: tariff1) {
-                settingVM.saveNewDefault(arrayName: "tariff", array: tariff1)
+                settingVM.saveNewDefault(arrayName: "tariff1", array: tariff1)
             }
         }
         else if settingVM.presetChosen == "2" {
@@ -119,7 +119,7 @@ struct TariffSettingView: View {
                 }
             }
             .onChange(of: tariff2) {
-                settingVM.saveNewDefault(arrayName: "tariff", array: tariff1)
+                settingVM.saveNewDefault(arrayName: "tariff", array: tariff2)
             }
         }
         else {
@@ -171,7 +171,7 @@ struct TariffSettingView: View {
                 }
             }
             .onChange(of: tariff3) {
-                settingVM.saveNewDefault(arrayName: "tariff", array: tariff1)
+                settingVM.saveNewDefault(arrayName: "tariff", array: tariff3)
             }
         }
     }

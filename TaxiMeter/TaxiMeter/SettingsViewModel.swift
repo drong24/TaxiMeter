@@ -65,6 +65,7 @@ class SettingsViewModel : ObservableObject {
     }
     func saveNewDefault(arrayName: String, array : [String]) {
         UserDefaults.standard.setValue(array, forKey: arrayName)
+        print("saved! \(array)")
     }
     
 }
