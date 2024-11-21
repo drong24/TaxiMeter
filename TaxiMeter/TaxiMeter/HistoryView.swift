@@ -35,6 +35,8 @@ struct HistoryView: View {
             }
         }
         .padding(.horizontal)
+        Divider()
+            .overlay(.black)
         ScrollView {
             VStack {
                 ForEach(tripApp.trips) { trip in
@@ -86,7 +88,7 @@ struct HistoryView: View {
                     .border(Color.black)
                 }
             }
-            .padding()
+            .padding(.horizontal)
         }
     }
 }
