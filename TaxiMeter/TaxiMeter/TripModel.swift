@@ -12,6 +12,7 @@ struct TripModel : Identifiable, Equatable {
     let id: UUID = UUID()
     let mileConverstionRate = 0.000621371
     let kilometerConversionRate = 0.001
+    var dateTime = Date()
     var distance: Double
     var rate: Double
     var initialFee: Double

@@ -17,6 +17,10 @@
 		ABE2E80B2CDE033C00682C89 /* TaxiMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E80A2CDE033C00682C89 /* TaxiMeterView.swift */; };
 		ABE2E8502CE9CCBD00682C89 /* TariffSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E84F2CE9CCBD00682C89 /* TariffSettingView.swift */; };
 		ABE2E8542CEAA47900682C89 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E8532CEAA47900682C89 /* SettingsViewModel.swift */; };
+		ABE2E8562CED571C00682C89 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E8552CED571C00682C89 /* HistoryView.swift */; };
+		ABE2E8582CED576A00682C89 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2E8572CED576A00682C89 /* HistoryViewModel.swift */; };
+		ABE2E85C2CED597300682C89 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = ABE2E85B2CED597300682C89 /* FirebaseAnalytics */; };
+		ABE2E85E2CED597300682C89 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ABE2E85D2CED597300682C89 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +35,8 @@
 		ABE2E80A2CDE033C00682C89 /* TaxiMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxiMeterView.swift; sourceTree = "<group>"; };
 		ABE2E84F2CE9CCBD00682C89 /* TariffSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TariffSettingView.swift; sourceTree = "<group>"; };
 		ABE2E8532CEAA47900682C89 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		ABE2E8552CED571C00682C89 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		ABE2E8572CED576A00682C89 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE2E85C2CED597300682C89 /* FirebaseAnalytics in Frameworks */,
+				ABE2E85E2CED597300682C89 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,14 +71,16 @@
 		ABE2E7E72CCD757B00682C89 /* TaxiMeter */ = {
 			isa = PBXGroup;
 			children = (
-				ABE2E7E82CCD757B00682C89 /* TaxiMeterApp.swift */,
+				ABE2E80A2CDE033C00682C89 /* TaxiMeterView.swift */,
 				ABE2E7EA2CCD757B00682C89 /* ContentView.swift */,
 				ABE2E7FE2CD3571E00682C89 /* SettingsView.swift */,
 				ABE2E84F2CE9CCBD00682C89 /* TariffSettingView.swift */,
-				ABE2E80A2CDE033C00682C89 /* TaxiMeterView.swift */,
+				ABE2E8552CED571C00682C89 /* HistoryView.swift */,
+				ABE2E7E82CCD757B00682C89 /* TaxiMeterApp.swift */,
 				ABE2E7F62CCD7A8900682C89 /* LocationDataManager.swift */,
 				ABE2E7FA2CCE139600682C89 /* TripModel.swift */,
 				ABE2E8532CEAA47900682C89 /* SettingsViewModel.swift */,
+				ABE2E8572CED576A00682C89 /* HistoryViewModel.swift */,
 				ABE2E7EC2CCD757C00682C89 /* Assets.xcassets */,
 				ABE2E7EE2CCD757C00682C89 /* Preview Content */,
 			);
@@ -101,6 +111,10 @@
 			dependencies = (
 			);
 			name = TaxiMeter;
+			packageProductDependencies = (
+				ABE2E85B2CED597300682C89 /* FirebaseAnalytics */,
+				ABE2E85D2CED597300682C89 /* FirebaseFirestore */,
+			);
 			productName = TaxiMeter;
 			productReference = ABE2E7E52CCD757B00682C89 /* TaxiMeter.app */;
 			productType = "com.apple.product-type.application";
@@ -129,6 +143,9 @@
 				Base,
 			);
 			mainGroup = ABE2E7DC2CCD757B00682C89;
+			packageReferences = (
+				ABE2E85A2CED597300682C89 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = ABE2E7E62CCD757B00682C89 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -160,8 +177,10 @@
 				ABE2E8502CE9CCBD00682C89 /* TariffSettingView.swift in Sources */,
 				ABE2E7F72CCD7A8900682C89 /* LocationDataManager.swift in Sources */,
 				ABE2E7FF2CD3571E00682C89 /* SettingsView.swift in Sources */,
+				ABE2E8582CED576A00682C89 /* HistoryViewModel.swift in Sources */,
 				ABE2E80B2CDE033C00682C89 /* TaxiMeterView.swift in Sources */,
 				ABE2E7E92CCD757B00682C89 /* TaxiMeterApp.swift in Sources */,
+				ABE2E8562CED571C00682C89 /* HistoryView.swift in Sources */,
 				ABE2E8542CEAA47900682C89 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +387,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ABE2E85A2CED597300682C89 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ABE2E85B2CED597300682C89 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABE2E85A2CED597300682C89 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		ABE2E85D2CED597300682C89 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABE2E85A2CED597300682C89 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ABE2E7DD2CCD757B00682C89 /* Project object */;
 }

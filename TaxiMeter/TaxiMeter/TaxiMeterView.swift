@@ -34,12 +34,18 @@ struct TaxiMeterView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "line.3.horizontal")
-                            .imageScale(.large)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-
+                    HStack {
+                        NavigationLink(destination: HistoryView()) {
+                            Image(systemName: "clock")
+                                .imageScale(.large)
+                        }
+                        NavigationLink(destination: SettingsView()) {
+                            Image(systemName: "line.3.horizontal")
+                                .imageScale(.large)
+                        }
+                        
                     }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
 
                     Text("Yellow Taxi")
                         .bold()
