@@ -143,16 +143,13 @@ struct TaxiMeterView: View {
             settingsModelView.fetchData()
             if presetChosen == "1" {
                 tariff = settingsModelView.tariff1
-                print("1 = \(presetChosen) : \(tariff)")
             }
             else if presetChosen == "2" {
                 tariff = settingsModelView.tariff2
-                print("2 = \(presetChosen) : \(tariff)")
 
             }
             else {
                 tariff = settingsModelView.tariff3
-                print("3 = \(presetChosen) : \(tariff)")
             }
             refresher.toggle()
         }

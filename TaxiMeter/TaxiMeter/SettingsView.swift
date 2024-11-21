@@ -23,7 +23,6 @@ struct SettingsView: View {
     var tariffPresets = ["1", "2", "3"]
     var currencies = ["USD", "EUR", "JPY", "GBP", "INR"]
     var unit = ["Mi", "Km"]
-    var themes = ["Classic Red", "Classic Yellow", "White", "Inverted"]
     var textSize = ["50", "60", "80", "100"]
     
     var body: some View {
@@ -62,11 +61,6 @@ struct SettingsView: View {
             
             Section("Other Setings") {
 
-                Picker(selection: $appTheme, label: Text("Color Scheme:")) {
-                    ForEach(themes, id: \.self) {
-                        Text($0)
-                    }
-                }
                 Picker(selection: $TotalFareTextSize, label: Text("Total Fare Text Size:")) {
                     ForEach(textSize, id: \.self) {
                         Text($0)
