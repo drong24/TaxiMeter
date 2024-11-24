@@ -7,11 +7,11 @@
 
 import Foundation
 import CoreLocation
+import FirebaseFirestore
 
-struct TripModel : Identifiable, Equatable {
-    let id: UUID = UUID()
-    let mileConverstionRate = 0.000621371
-    let kilometerConversionRate = 0.001
+
+struct TripModel : Identifiable, Equatable, Codable {
+    @DocumentID var id: String?    
     var dateTime = Date()
     var distance: Double = 0
     var rate: Double = 0
@@ -28,14 +28,6 @@ struct TripModel : Identifiable, Equatable {
     
     mutating func setInitialFee(newFee: Double) {
         initialFee = newFee
-    }
-    
-    func getDistanceInMi() -> Double {
-        return distance * mileConverstionRate
-    }
-    
-    func getDistanceInKm() -> Double {
-        return distance * kilometerConversionRate
     }
     
     func getTotalFare() -> Double {

@@ -89,6 +89,9 @@ struct HistoryView: View {
                 }
             }
             .padding(.horizontal)
+            .onAppear {
+                tripApp.fetchData()
+            }
         }
     }
 }
