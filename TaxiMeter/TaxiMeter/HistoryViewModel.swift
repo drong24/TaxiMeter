@@ -43,34 +43,25 @@ class HistoryViewModel : ObservableObject {
     }
     
     func saveData(trip : TripModel) {
-        if let id = trip.id {
-            let docRef = db.collection("memos").document(id)
-            
-            docRef.updateData([
-                "dateTime": trip.dateTime,
-                "distance": trip.distance,
-                "initialFee": trip.initialFee
-            ]) { err in
-                if let err = err {
-                    print("Error updating document: \(err)")
-                } else {
-                    print("Sucessfully updated document.")
-                }
-                
-            }
-        } else {
-            db.collection("trips").addDocument(data: [
-                "dateTime": trip.dateTime,
-                "distance": trip.distance,
-                "initialFee": trip.initialFee
-            ]) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Sucessfully added document.")
-                }
+
+        db.collection("trips").addDocument(data: [
+            "dateTime": trip.dateTime,
+            "distance": trip.distance,
+            "rate": trip.rate,
+            "initialFee": trip.initialFee,
+            "currency": trip.currency,
+            "distanceUnit": trip.distanceUnit,
+            "toll": trip.toll,
+            "waitTimeFee": trip.waitTimeFee,
+            "waitTimeRate": trip.waitTimeRate
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Sucessfully added document.")
             }
         }
+        
     }
     
     func deleteData(trip : TripModel) {

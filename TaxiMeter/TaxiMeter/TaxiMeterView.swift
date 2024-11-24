@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TaxiMeterView: View {
     
+    @StateObject var historyVM = HistoryViewModel()
     @StateObject var settingsModelView = SettingsViewModel()
     @StateObject var locationDataManager = LocationDataManager()
     var totalFare: Double = 0
@@ -122,7 +123,14 @@ struct TaxiMeterView: View {
                     }
                     Button("Complete Trip", action: {
                         trackingStarted = false
-                        //locationDataManager.save()
+                        historyVM.saveData(trip: TripModel(
+                            distance: locationDataManager.distanceTraveled,
+                            rate: Double(settingsModelView.getFareRate())!,
+                            initialFee: Double(settingsModelView.getInitialFee())!,
+                            toll: Double(settingsModelView.getTolls())!,
+                            distanceUnit: distanceUnit,
+                            currency: currency
+                        ))
                         locationDataManager.reset()
                     })
                     .frame(maxWidth: .infinity)
