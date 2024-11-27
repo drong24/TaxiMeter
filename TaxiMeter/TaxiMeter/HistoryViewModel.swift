@@ -66,12 +66,12 @@ class HistoryViewModel : ObservableObject {
     
     func deleteData(trip : TripModel) {
         if let id = trip.id {
-            db.collection("memos").document(id).delete()
+            db.collection("trips").document(id).delete()
             { err in
                 if let err = err {
-                    print("Error adding document: \(err)")
+                    print("Error removing document: \(err)")
                 } else {
-                    print("Sucessfully added document.")
+                    print("Sucessfully removed document.")
                 }
             }
         }

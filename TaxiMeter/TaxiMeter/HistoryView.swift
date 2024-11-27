@@ -19,20 +19,6 @@ struct HistoryView: View {
                 .font(.title)
                 .bold()
                 .frame(alignment: .center)
-            Spacer()
-            Button {
-
-            } label: {
-                HStack {
-                    Text("Clear History")
-                    Image(systemName: "trash")
-                }
-                .padding(7)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 7.0)
-                        .stroke()
-                )
-            }
         }
         .padding(.horizontal)
         Divider()
@@ -41,9 +27,20 @@ struct HistoryView: View {
             VStack {
                 ForEach(tripApp.trips) { trip in
                     VStack(alignment: .leading) {
-                        Text("\(trip.dateTime.formatted())")
-                            .font(.system(size: 23))
-                            .fontWeight(.bold)
+                        HStack {
+                            Text("\(trip.dateTime.formatted())")
+                                .font(.system(size: 23))
+                                .fontWeight(.bold)
+                            Spacer()
+                            Button {
+                                tripApp.deleteData(trip: trip)
+                                tripApp.fetchData()
+                                refresher.toggle()
+                            } label: {
+                                Image(systemName: "trash")
+                            }
+                        }
+                        .padding(.bottom)
                         HStack {
                             Text("Distance:")
                             Spacer()

@@ -28,7 +28,6 @@ class SettingsViewModel : ObservableObject {
         return tariff3[0]
     }
     func getFareRate() -> String {
-        print("at getFareRate -> \(presetChosen) : \(tariff1[1])")
         if (presetChosen == "1") {
             return tariff1[1]
         }
