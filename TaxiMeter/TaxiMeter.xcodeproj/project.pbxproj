@@ -75,17 +75,17 @@
 		ABE2E7E72CCD757B00682C89 /* TaxiMeter */ = {
 			isa = PBXGroup;
 			children = (
-				ABE2E80A2CDE033C00682C89 /* TaxiMeterView.swift */,
 				ABE2E7EA2CCD757B00682C89 /* ContentView.swift */,
+				ABE2E80A2CDE033C00682C89 /* TaxiMeterView.swift */,
+				ABE2E8812CF695B300682C89 /* TaxiMeterDetailsView.swift */,
 				ABE2E7FE2CD3571E00682C89 /* SettingsView.swift */,
 				ABE2E84F2CE9CCBD00682C89 /* TariffSettingView.swift */,
 				ABE2E8552CED571C00682C89 /* HistoryView.swift */,
 				ABE2E7E82CCD757B00682C89 /* TaxiMeterApp.swift */,
 				ABE2E7F62CCD7A8900682C89 /* LocationDataManager.swift */,
-				ABE2E7FA2CCE139600682C89 /* TripModel.swift */,
 				ABE2E8532CEAA47900682C89 /* SettingsViewModel.swift */,
 				ABE2E8572CED576A00682C89 /* HistoryViewModel.swift */,
-				ABE2E8812CF695B300682C89 /* TaxiMeterDetailsView.swift */,
+				ABE2E7FA2CCE139600682C89 /* TripModel.swift */,
 				ABE2E7EC2CCD757C00682C89 /* Assets.xcassets */,
 				ABE2E87F2CF2C6C000682C89 /* GoogleService-Info.plist */,
 				ABE2E7EE2CCD757C00682C89 /* Preview Content */,

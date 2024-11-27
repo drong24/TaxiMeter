@@ -65,14 +65,12 @@ class SettingsViewModel : ObservableObject {
     }
     func saveNewDefault(arrayName: String, array : [String]) {
         UserDefaults.standard.setValue(array, forKey: arrayName)
-        print("saved! \(arrayName) : \(array)")
     }
     func fetchData() {
         presetChosen = UserDefaults.standard.string(forKey: "presetChosen") ?? "1"
         tariff1 = UserDefaults.standard.stringArray(forKey: "tariff1") ?? ["1.0", "2.0", "3.0", "4.0", "5.0"]
         tariff2 = UserDefaults.standard.stringArray(forKey: "tariff2") ?? ["2.0", "2.0", "3.0", "4.0", "5.0"]
         tariff3 = UserDefaults.standard.stringArray(forKey: "tariff3") ?? ["3.0", "2.0", "3.0", "4.0", "5.0"]
-        print("at fetchData \(presetChosen) : \(tariff1)")
     }
     
 }

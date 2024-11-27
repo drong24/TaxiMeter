@@ -36,7 +36,6 @@ class HistoryViewModel : ObservableObject {
                             print(error)
                         }
                     }
-                    print(self.trips)
                 }
             }
         }
