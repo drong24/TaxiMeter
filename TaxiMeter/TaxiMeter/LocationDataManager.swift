@@ -58,9 +58,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
         }
         else {
             distanceTraveled += previousLocation.distance(from: newLocation)
-            print(distanceTraveled)
         }
-        print("Updated!")
         previousLocation = newLocation
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
