@@ -19,8 +19,8 @@ struct TaxiMeterView: View {
     @AppStorage("distanceUnit") var distanceUnit = "Mi"
     @AppStorage("currency") var currency = "USD"
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common)
-    @State var counter = 0
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var waitTime = 0
     
     var body: some View {
         
@@ -93,7 +93,10 @@ struct TaxiMeterView: View {
                 .background(Color.black)
                 .foregroundStyle(Color(red: 247,green: 0, blue: 0))
                 .onReceive(timer) { time in
-                    if 
+                    if  trackingStarted && locationDataManager.locationDifference < 5 {
+                        waitTime += 1
+                    }
+                    print("\(waitTime) - \(locationDataManager.locationDifference)")
                 }
             }
             .frame(minWidth: geometry.size.width,minHeight: geometry.size.height)

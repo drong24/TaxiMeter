@@ -15,6 +15,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     
     var previousLocation: CLLocation!
     var newLocation: CLLocation!
+    var locationDifference: Double = 0
     
     @Published var distanceTraveled: Double = 0
     var rate : Double = 2.5
@@ -58,6 +59,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
             previousLocation = newLocation
         }
         else {
+            locationDifference = previousLocation.distance(from: newLocation)
             distanceTraveled += previousLocation.distance(from: newLocation)
         }
         previousLocation = newLocation
