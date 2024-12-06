@@ -19,6 +19,9 @@ struct TaxiMeterView: View {
     @AppStorage("distanceUnit") var distanceUnit = "Mi"
     @AppStorage("currency") var currency = "USD"
     
+    let timer = Timer.publish(every: 1, on: .main, in: .common)
+    @State var counter = 0
+    
     var body: some View {
         
         GeometryReader { geometry in
@@ -89,6 +92,9 @@ struct TaxiMeterView: View {
                 .frame(minWidth: geometry.size.width,minHeight: geometry.size.height)
                 .background(Color.black)
                 .foregroundStyle(Color(red: 247,green: 0, blue: 0))
+                .onReceive(timer) { time in
+                    if 
+                }
             }
             .frame(minWidth: geometry.size.width,minHeight: geometry.size.height)
             .background(Color.black)

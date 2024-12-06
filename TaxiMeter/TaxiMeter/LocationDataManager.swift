@@ -20,6 +20,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     var rate : Double = 2.5
     var initialFee : Double = 6.00
     var tripList = UserDefaults.standard.array(forKey: "tripList")
+        
     
     override init() {
         super.init()
