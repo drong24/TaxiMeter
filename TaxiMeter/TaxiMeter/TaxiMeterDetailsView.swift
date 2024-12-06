@@ -11,7 +11,7 @@ struct TaxiMeterDetailsView: View {
     
     @StateObject var settingsVM = SettingsViewModel()
     
-    let mileConversionRate = 0.621371
+    let mileConversionRate = 0.000621371
     @State var trackingStarted = false
     @State var refresher = false
     
@@ -39,7 +39,7 @@ struct TaxiMeterDetailsView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 else {
-                    Text("\(String(format:"%.2f", distanceTraveled)) \(distanceUnit)")
+                    Text("\(String(format:"%.2f", distanceTraveled * 0.001)) \(distanceUnit)")
                         .bold()
                         .font(.system(size: 50, design: .monospaced))
                         .frame(maxWidth: .infinity, alignment: .leading)
