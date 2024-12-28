@@ -78,6 +78,7 @@ struct TaxiMeterView: View {
                             rate: Double(settingsVM.getFareRate())!,
                             initialFee: Double(settingsVM.getInitialFee())!,
                             toll: Double(settingsVM.getTolls())!,
+                            waitTimeFee: Double(waitTime),
                             distanceUnit: distanceUnit,
                             currency: currency
                         ))
