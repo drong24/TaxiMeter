@@ -15,6 +15,7 @@ struct SettingsView: View {
     @AppStorage("appTheme") var appTheme = "Classic Red"
     @AppStorage("showDistance") var showDistance = false
     @AppStorage("showfareRate") var showFareRate = false
+    @AppStorage("showWaitFee") var showWaitFee = false
     @AppStorage("showInitialFee") var showInitialFee = false
     @AppStorage("TotalFareTextSize") var TotalFareTextSize = "60"
     @AppStorage("presetChosen") var presetChosen = "1"
@@ -57,6 +58,7 @@ struct SettingsView: View {
                 Toggle("Show Distance Traveled", isOn: $showDistance)
                 Toggle("Show Rate", isOn: $showFareRate)
                 Toggle("Show Initial Fee", isOn: $showInitialFee)
+                Toggle("Show Wait Fee", isOn: $showWaitFee)
             }
             
             Section("Other Setings") {

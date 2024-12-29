@@ -46,7 +46,7 @@ struct TaxiMeterView: View {
                         .foregroundColor(Color.yellow)
                     
                     Spacer()
-                    TaxiMeterDetailsView(distanceTraveled: $locationDataManager.distanceTraveled)
+                    TaxiMeterDetailsView(distanceTraveled: $locationDataManager.distanceTraveled, waitTime: $waitTime)
                     Spacer()
                     if !trackingStarted {
                         Button("Start Tracking", action: {
@@ -78,7 +78,7 @@ struct TaxiMeterView: View {
                             rate: Double(settingsVM.getFareRate())!,
                             initialFee: Double(settingsVM.getInitialFee())!,
                             toll: Double(settingsVM.getTolls())!,
-                            waitTimeFee: Double(waitTime) * (Double(settingsVM.getWaitFeeRate()) ?? 1),
+                            waitTimeFee: Double(waitTime) * (Double(settingsVM.getWaitFeeRate())!),
                             distanceUnit: distanceUnit,
                             currency: currency
                         ))

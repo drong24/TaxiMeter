@@ -18,12 +18,14 @@ struct TaxiMeterDetailsView: View {
     @AppStorage("showDistance") var showDistance = false
     @AppStorage("showfareRate") var showFareRate = false
     @AppStorage("showInitialFee") var showInitialFee = false
+    @AppStorage("showWaitFee") var showWaitFee = false
     @AppStorage("TotalFareTextSize") var TotalFareTextSize = "60"
     @AppStorage("distanceUnit") var distanceUnit = "Mi"
     @AppStorage("currency") var currency = "USD"
     @AppStorage("presetChosen") var presetChosen = "1"
     
     @Binding var distanceTraveled : Double
+    @Binding var waitTime : Int
     
     var body: some View {
         
@@ -64,6 +66,15 @@ struct TaxiMeterDetailsView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: 50, design: .monospaced))
             }
+            if (showWaitFee) {
+                Text("Wait fee:")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.system(size: 30, design: .monospaced))
+                Text(Double(settingsVM.getWaitFeeRate()) ?? 0 * Double(waitTime), format: .currency(code: currency))
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.system(size: 50, design: .monospaced))
+            }
             Text("Total fare:")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(.system(size: 30, design: .monospaced))
@@ -80,5 +91,5 @@ struct TaxiMeterDetailsView: View {
 }
 
 #Preview {
-    TaxiMeterDetailsView(distanceTraveled: .constant(0.0))
+    TaxiMeterDetailsView(distanceTraveled: .constant(0.0), waitTime: .constant(0))
 }
